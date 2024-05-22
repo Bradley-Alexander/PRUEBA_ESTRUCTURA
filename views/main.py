@@ -28,28 +28,24 @@ queque = Queque(4)
 factura = FacturaDaoControl()
 persona = PersonaDaoControl()
 
-factura._factura._fecha = "2021-04-17"
-factura._factura._total = 100.0
-factura.save
 
-try:
-    stack.push("1")
-    stack.push("2")
-    stack.push("3")
-    stack.push("4")
-    print('Pila')
-    stack.print
-    stack.pop()
-    stack.print
+stack.push("1")
+stack.push("2")
+stack.push("3")
+stack.push("4")
+print('Pila')
+stack.print
+stack.pop
+stack.print
 
-    queque.push("1")
-    queque.push("2")
-    queque.push("3")
-    queque.push("4")
-    print('Cola')
-    queque.print
-    queque.pop()
-    queque.print
+queque.push("1")
+queque.push("2")
+queque.push("3")
+queque.push("4")
+print('Cola')
+queque.print
+queque.pop
+queque.print
 
 
 
@@ -114,10 +110,6 @@ try:
     # cd.save
     
     
-
-
-except Exception as e:
-    print(e)
 
 
 #Listas Enlazadas

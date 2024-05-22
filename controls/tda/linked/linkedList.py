@@ -124,7 +124,7 @@ class Linked_List(object):
                 node = node._next
                 cont += 1
             node._next = node._next._next
-        self.__lenght -= 1
+        self.__length -= 1
 
     
 
