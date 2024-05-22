@@ -37,6 +37,9 @@ class FacturaDaoControl(DaoAdapter):
         else:
             raise IndexError("The queue is empty")
     
+    def __str__ (self):
+        return str(self.__factura)
+    
 
     
    

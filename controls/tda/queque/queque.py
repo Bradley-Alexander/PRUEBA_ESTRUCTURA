@@ -3,8 +3,6 @@ class Queque:
     def __init__(self, top):
         self.__queque = QuequeOperation(top)
 
-
-
     def push(self, data):
         self.__queque.queque(data)
     

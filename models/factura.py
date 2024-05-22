@@ -42,3 +42,6 @@ class Factura:
         factura._fecha = data['fecha']
         factura._total = data['total']
         return factura
+    
+    def __str__(self):
+        return f"Fecha Factura: {self._fecha} Total Fatura: {self._total}"

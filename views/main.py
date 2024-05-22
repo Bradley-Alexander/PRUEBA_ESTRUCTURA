@@ -1,16 +1,3 @@
-#DAO
-'''
-Patron de diseno DAO PIS
-
-Dao adapter
-* create
-* list
-* update (change, stafe)
-* search
-Patron de diseno Fachada
-
-'''
-
 import sys
 sys.path.append('../')
 from controls.tda.linked.linkedList import Linked_List
@@ -18,18 +5,28 @@ from controls.personaDaoControl import PersonaDaoControl
 from controls.censoDao import CensoDao
 from controls.tda.stack.stack import Stack
 from controls.tda.queque.queque import Queque
+from controls.tda.queque.quequeArray import QueueArray
 from controls.facturaDaoControl import FacturaDaoControl
+from controls.tda.stack.stackArray import StackArray
+
 # pc = PersonaControl()
 # cd = CensoDao()
+
 pcd = PersonaDaoControl()
 stack = Stack(4)
 queque = Queque(4)
+quequeArray = QueueArray(4)
+stackArray = StackArray(4)
 
 factura = FacturaDaoControl()
 persona = PersonaDaoControl()
 
+factura._factura._fecha = "2021-04-17"
+factura._factura._total = "100"
 
-stack.push("1")
+
+
+stack.push(factura._factura)
 stack.push("2")
 stack.push("3")
 stack.push("4")
@@ -48,6 +45,25 @@ queque.pop
 queque.print
 
 
+stackArray.push("1")
+stackArray.push("2")
+stackArray.push("3")
+stackArray.push("4")
+print('Pila')
+stackArray.print
+stackArray.pop
+stackArray.print
+
+
+
+quequeArray.push("1")
+quequeArray.push("2")
+quequeArray.push("3")
+quequeArray.push("4")
+print('Cola Array')
+quequeArray.print
+quequeArray.pop
+quequeArray.print
 
     # pc._persona._apellidos = "Leon"
     # pc._persona._nombre = "Esteban"
