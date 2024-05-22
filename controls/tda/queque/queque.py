@@ -1,19 +1,21 @@
-from controls.tda.queque.quequeOperations import QuequeOperation
-
+from controls.tda.queque.quequeOperation import QuequeOperation
 class Queque:
-    def __init__(self, tope):
-        self.__queque = QuequeOperation(tope)
+    def __init__(self, top):
+        self.__queque = QuequeOperation(top)
+
+
 
     def push(self, data):
         self.__queque.queque(data)
-
+    
+    @property
     def pop(self):
-        self.__queque.dequeque
+        return self.__queque.dequeque
     
     @property
     def print(self):
         self.__queque.print
-    
+
     @property
     def verify(self):
         return self.__queque.verifyTop

@@ -1,83 +1,113 @@
-from typing import Any
-import json
 from controls.tda.linked.node import Node
-from controls.exception.arrayPositionException import ArrayPositionException
-from controls.exception.linkedEmpty import LinkedEmpty
-
+from controls.exception.linkedListExeption import LinkedEmptyException, ArrayPositionException
 class Linked_List(object):
     def __init__(self):
-        self.__head = None  
+        self.__head = None
         self.__last = None
-        self.__lenght = 0
+        self.__length = 0
+        
+
 
     @property
-    def _lenght(self):
-        return self.__lenght
+    def _length(self):
+        return self.__length
 
-    @_lenght.setter
-    def _lenght(self, value):
-        self.__lenght = value
+    @_length.setter
+    def _length(self, value):
+        self.__length = value
+
 
     @property
     def isEmpty(self):
-        return self.__head == None or self.__lenght == 0  
-
+        return self.__head == None or self.__length == 0
+    
     def __addFirst__(self, data):
         if self.isEmpty:
             node = Node(data)
-            self.__head = node  
+            self.__head = node
             self.__last = node
-            self.__lenght += 1
-        else:
-            headOld = self.__head  
-            node = Node(data, headOld)
-            self.__head = node  
-            self.__lenght += 1
+            self.__length += 1
+        else: 
+            headOld = self.__head
+            self.__head = Node(data, headOld)
+            self.__length += 1
 
     def __addLast__(self, data):
-        if self.isEmpty:
-           self.__addFirst__(data)
-        else:
-            node = Node(data)
-            self.__last._next = node
-            self.__last = node
-            self.__lenght += 1
+            if self.isEmpty:
+                self.__addFirst__(data)
+            else: 
+                node = Node(data)
+                self.__last._next = node
+                self.__last = node
+                self.__length += 1
 
+
+                
+    def edit(self, data, pos=0):
+        if pos == 0:
+            self.__head._data = data
+        elif pos == self._length:
+            self.__last._data = data
+        else:
+            self.getNode(pos)._data = data
+                   
+    
+    def getNode(self, pos):
+        if self.isEmpty:
+            raise LinkedEmptyException("List is Empty")
+        elif pos < 0 or pos >= self._length:
+            raise ArrayPositionException("Position is out of range")
+        elif pos == 0:
+            return self.__head
+        elif pos == self._length -1 :
+            return self.__last
+        else:
+            count = 0
+            node = self.__head
+            while count < pos:
+                node = node._next
+                count += 1
+            return node
+        
+    def get(self, pos):
+        return self.getNode(pos)._data
+        
+
+    def add(self, data, pos):
+        if pos == 0:
+            self.__addFirst__(data)
+        elif pos == self._length:
+            self.__addLast__(data)
+        else:
+            node_preview = self.getNode(pos-1)
+            node_last = node_preview._next
+            node_preview._next = Node(data, node_last)
+            self.__length += 1
+    
+    
     @property
     def clear(self):
         self.__head = None
         self.__last = None
-        self.__lenght = 0
+        self.__length = 0
 
-    #insetar en una posicion           
-    def add(self, data, pos = 0):
-        if pos == 0:
-            self.__addFirst__(data)
-        elif pos == self.__lenght:
-            self.__addLast__(data)
-        else:
-            node_preview = self.getNode(pos - 1)
-            node_last = node_preview._next #self.getNode(pos)
-            node = Node(data, node_last)
-            node_preview._next = node
-            self.__lenght += 1
-    
-    #Modificar
-    def edit(self, data, pos = 0):
-        if pos == 0:
-            self.__head._data = data 
-        elif pos == self.__lenght:
-            self.__last._data = data
-        else:
-            node = self.getNode(pos)  
-            node._data = data
-    @property
+
+    @property    
     def toArray(self):
-        #TODO
-        pass
+        out = []
+        if self.isEmpty:
+            out = "List is Empty"
+        else:
+            node = self.__head
+            while node!= None:
+                out.append(node._data.__name)
+                node = node._next
 
-   
-        #TODO:
+        return out
+    
+        
+    
+    
     def delete(self, pos = 0):
         if pos == 0:
             self.__head = self.__head._next  
@@ -95,99 +125,43 @@ class Linked_List(object):
                 cont += 1
             node._next = node._next._next
         self.__lenght -= 1
+
     
-    """Obtiene el objeto nodo"""
-    def getNode(self, pos):
-        if self.isEmpty:
-            raise LinkedEmpty("List empty")
-        elif pos < 0 or pos >= self._lenght:
-            raise ArrayPositionException("Index out range")
-        elif pos == 0:
-            return self.__head
-        elif pos == (self.__lenght - 1):
-            return self.__last
-        else:
-            node = self.__head
-            cont = 0
-            while cont < pos:
-                cont += 1
-                node = node._next
-            return node
+
         
-    """Obtiene el objeto nodo"""
-    def get(self, pos):
-        
-        if self.isEmpty:
-            raise LinkedEmpty("List empty")
-        elif pos < 0 or pos >= self._lenght:
-            raise ArrayPositionException("Index out range")
-        elif pos == 0:
-            return self.__head._data
-        elif pos == (self.__lenght - 1):
-            return self.__last._data
-        else:
-            node = self.__head
-            cont = 0
-            while cont < pos:
-                cont += 1
-                node = node._next
-            return node._data
     
     def __str__(self) -> str:
         out = ""
         if self.isEmpty:
-            return "List is Empty"
+            out = "List is Empty"
         else:
-            node = self.__head  # Cambio aquí
-            while node != None:
-                out += str(node._data) + "\t"
-                node = node._next          
-        return out
+            node = self.__head
+            while node!= None:
+                out += str(node._data) +'\t'
+                node = node._next
+            
 
+        return out
+    
+    
+    
+    
     @property
     def print(self):
-        
-        node = self.__head
-        data = ""
-        while node != None:
-            data += str(node._data) + "\t"
+       node = self.__head
+       data = ''
+
+       while node != None:
+            data += str(node._data)+ '    '
             node = node._next
-        print("Lista de datos")
-        print(data)
-    
-    
-# #Pasar la lista a arreglo
-    # @property
-    # def toArray(self):
-    #     if self.isEmpty:
-    #         return []
-    #     else:
-    #         array = []
-    #         node = self._head  
-    #         while node != None:
-    #             array.append(node._data)
-    #             node = node._next
-    #         return array
-
-    
-    # #Eliminar
-        
-    # def eliminar(self, pos):
-    #     if pos == 0:
-    #         self._head = self._head._next  
-    #     elif pos == self.__lenght - 1:
-    #         node = self._head  
-    #         while node._next != self.__last:
-    #             node = node._next
-    #         node._next = None
-    #         self.__last = node
-    #     else:
-    #         cont = 1
-    #         node = self._head  
-    #         while node._next != None and cont < pos:
-    #             node = node._next
-    #             cont += 1
-    #         node._next = node._next._next
-    #     self.__lenght -= 1
-
-    ##############################################3
+       print(data) 
+       
+""" #si ya esxiste un nodo igual en la lista
+    def __exist__(self, data):
+        node = self.__head
+        while node != None:
+            if node._data == data:
+                print('ya existe un nodo con este dato')
+                return node._data.__id
+            node = node._next
+        return False """

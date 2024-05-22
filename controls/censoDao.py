@@ -1,4 +1,3 @@
-from typing import Type
 from controls.dao.daoAdapter import DaoAdapter
 from models.censo import Censo
 class CensoDao(DaoAdapter):
@@ -16,11 +15,12 @@ class CensoDao(DaoAdapter):
 
     @property
     def _lista(self):
-        return self._list() 
-    
+        return self._list()
+
     @property
     def save(self):
-        #print("ccc")
-        #print(self.__persona)
-        self.get_censo()._id = self._lista._lenght + 1
-        self._save(self.get_censo())   
+        self.get_censo()._id = self._lista._length + 1
+        self._save(self.get_censo())
+
+
+        

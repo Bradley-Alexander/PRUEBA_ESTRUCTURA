@@ -1,13 +1,15 @@
 from controls.exception.arrayPositionException import ArrayPositionException
-class TDAArray:
-    def __init__(self, size, value = None): #arreglo 
+
+class TDAArray():
+    def __init__(self, size, value= None):
         self.__size = size
         self.__position = 0
-        if size > 0:
+        if size > 0: 
             self.__array = []
             for i in range(0, self.__size):
                 self.__array.append(None)
-        else:
+            print(self.__array)
+        else: 
             self.__array = None
 
     @property
@@ -26,41 +28,33 @@ class TDAArray:
     def _array(self, value):
         self.__array = value
 
-    def save(self, value, pos):
-        # size = 5 pos = 6
-        if (pos < self.__size and pos >= 0):
-            print(len(self.__array))
-            self.__array[pos] = value
-        else:
-            raise ArrayPositionException("Index  found error "+str(pos))
+
+    #def save(self, value):
+     #   for i in range(0, self.__size):
+      #      if self.__array[i] == None:
+       #         self.__array[i] = value
+        #        self.__espacios_disponibles = self.__size - i-1
+         #       return 
+        #raise ArrayPositionException('Index found error: La tabla esta llena')
     
-    
-    # def save(self, value):
-    #     # size = 5 pos = 6
-    #     #if self.__array [0] == None:
-    #         self.__array[self.__position] = value
-    #         self.__position = self.__position + 1
-    #     #else:
-    #         #self.__array[self.__position] = value
-    #         #self.__position = self.__position + 1
-    
-    
-    
-    def saveSecuencial(self):
-        i = -1
-        cont = 0
-        for value in self.__array:
-            if value == None:
-              i = cont
-              break
-            cont = cont + 1
-        return i
+    def save(self, value):
+        #if self.__array[0] == None:
+            self._array[self.__position] = value
+            self.__position +=1
+            print(self.__array)
+       #else:
+           # self._array[self.__position] = value
+            #self.__position = self.__position + 1
     
     def check(self):
-        i = -1
-        #cont = 0
-        for j in range(0, self.__size):
+        #print("Espacios disponibles: ", self.__espacios_disponibles)
+        #print(self._array)
+        i = 0
+        for j in range(0, self._size):
             if self.__array[j] == None:
-              i = j
-              break
+                i = j
+                break
         return i
+    
+
+    # proyectar cuantos se van a queda, quien tiene el mejor rendimirnto por cada materia, 

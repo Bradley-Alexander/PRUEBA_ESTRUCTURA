@@ -1,5 +1,5 @@
-class Node (object):
-    def __init__(self, data, next = None):
+class Node(object):
+    def __init__(self,data, next=None):
         self.__data = data
         self.__next = next
 
@@ -19,5 +19,6 @@ class Node (object):
     def _next(self, value):
         self.__next = value
 
-    def returnNode(self):
-        return self.__next
+
+
+
