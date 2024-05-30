@@ -106,26 +106,24 @@ class Linked_List(object):
         return out
     
         
-    
-    
-    def delete(self, pos = 0):
-        if pos == 0:
-            self.__head = self.__head._next  
-        elif pos == self.__lenght - 1:
-            node = self.__head  
-            while node._next != self.__last:
-                node = node._next
-            node._next = None
-            self.__last = node
+    def delete(self, pos=0):
+        if self.isEmpty:
+            raise LinkedEmptyException("List is Empty")
+        elif pos < 0 or pos >= self._length:
+            raise ArrayPositionException("Position is out of range")
+        elif pos == 0:
+            data = self.__head._data
+            self.__head = self.__head._next
+            self.__length -= 1
+            return data
         else:
-            cont = 1
-            node = self._head  
-            while node._next != None and cont < pos:
-                node = node._next
-                cont += 1
-            node._next = node._next._next
-        self.__length -= 1
-
+            node_preview = self.getNode(pos-1)
+            data = node_preview._next._data
+            node_preview._next = node_preview._next._next
+            self.__length -= 1
+            return data
+    
+    
     
 
         

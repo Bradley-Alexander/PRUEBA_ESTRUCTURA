@@ -30,7 +30,8 @@ class StackOperation(Linked_List):
         if self.isEmpty:
             raise LinkedEmptyException("List is Empty")
         else:
+            num = self.get(0)
             self.delete(0)
-
+        return num
 
     

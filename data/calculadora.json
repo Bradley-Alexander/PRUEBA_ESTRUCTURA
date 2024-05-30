@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "expresion": "79 1 - 9 8 / *",
+        "resultado": 87.75
+    },
+    {
+        "id": 2,
+        "expresion": "16 4 + 2 5 * +",
+        "resultado": 30.0
+    },
+    {
+        "id": 3,
+        "expresion": "1 a + 2 + b",
+        "resultado": "EXPRESI\u00d3N INV\u00c1LIDA"
+    },
+    {
+        "id": 4,
+        "expresion": "79 1 - 9 8 / *",
+        "resultado": 87.75
+    },
+    {
+        "id": 5,
+        "expresion": "5 m +",
+        "resultado": "EXPRESI\u00d3N INV\u00c1LIDA"
+    },
+    {
+        "id": 6,
+        "expresion": "10 20 *",
+        "resultado": 200.0
+    },
+    {
+        "id": 7,
+        "expresion": "5 b + 2 y + 7 b",
+        "resultado": "EXPRESI\u00d3N INV\u00c1LIDA"
+    },
+    {
+        "id": 8,
+        "expresion": "2 10 * 6 +",
+        "resultado": 26.0
+    }
+]

@@ -3,8 +3,6 @@ class Stack:
     def __init__(self, tope):
         self.__stack = StackOperation(tope)
 
-
-
     def push(self, data):
         self.__stack.push(data)
     
